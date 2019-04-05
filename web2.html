@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="web.css">
+  <link rel="stylesheet" type="text/css" href="styleTable.css">
+  <script type="text/javascript">
+  	$(function(){
+  		$("#includeHeader").load("header.html");
+  	});
+  </script>
+</head>
+<body>
+<div id="includeHeader"></div>
+<div class="container">
+	<div class="margin-div"><br>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<center><h3>Planet List</h3></center>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-3">
+						<input type="text" class="form-control" onkeyup="search()" name="" id="search-value" placeholder="Search by name">
+					</div>
+				</div><br>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Rotation Periode</th>
+										<th>Orbital Periode</th>
+										<th>Diameter</th>
+										<th>Climate</th>
+										<th>Gravity</th>
+										<th>Terrain</th>
+										<th>Surface Water</th>
+										<th>Population</th>
+									</tr>
+								</thead>
+								<tbody id="body-data">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+<script type="text/javascript" src="array.js"></script>
+<script type="text/javascript">
+	data.results.forEach(function(item){
+		document.getElementById("body-data").innerHTML += "<tr> <td>"+ item.name +"</td> <td>"+ item.rotation_period +"</td> <td>"+ item.orbital_period +"</td> <td>"+ item.diameter +"</td> <td>"+ item.climate +"</td> <td>"+ item.gravity +"</td> <td>"+ item.terrain +"</td> <td>"+ item.surface_water +"</td> <td>"+ item.population +"</td> </tr>"
+	})
+	function search() {
+		var searchValue = document.getElementById('search-value');
+		var filterValue = searchValue.value.toUpperCase();
+		var tbody = document.getElementById("body-data");
+		var tr = tbody.getElementsByTagName('tr');
+
+		for (i = 0; i < tr.length; i++) {
+			var td = tr[i].getElementsByTagName("td")[0];
+			var value = td.textContent || td.innerText;
+			if (value.toUpperCase().indexOf(filterValue) > -1) {
+			  tr[i].style.display = "";
+			} else {
+			  tr[i].style.display = "none";
+			}
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,16 @@
+.table thead th {
+    vertical-align: inherit;
+}
+thead {
+	background-color: #b4c5c4;
+}
+th {
+	text-align: center;
+}
+.margin-div {
+	margin-left: 2%; 
+	margin-right: 2%;
+}
+.background-header{
+	background-color: #28a745;
+}
